@@ -1,0 +1,30 @@
+{{#if showHeader}}
+  <thead>
+    <tr>
+      {{yield (hash
+          column=(component 'dt-column-header')
+          selectionColumn=(component (if singleSelection 'dt-column-header' 'dt-selection-column-header') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
+      )}}
+    </tr>
+  </thead>
+{{/if}}
+<tbody>
+  {{#each data as |row index|}}
+    <tr class={{if (array-contains selectedRows row) 'info'}} {{action (if (array-contains selectedRows row) 'deselected' 'selected') row on='doubleClick'}}>
+      {{yield (hash
+          column=(component 'dt-column-cell' row=row index=index)
+          selectionColumn=(component 'dt-selection-column' row=row index=index isSelected=(array-contains selectedRows row) selected=(action 'selected' row) deselected=(action 'deselected' row))
+      )}}
+    </tr>
+  {{/each}}
+</tbody>
+{{#if showFooter}}
+  <tfoot>
+    <tr>
+      {{yield (hash
+          column=(component 'dt-column-footer')
+          selectionColumn=(component (if singleSelection 'dt-column-footer' 'dt-selection-column-footer') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
+      )}}
+    </tr>
+  </tfoot>
+{{/if}}

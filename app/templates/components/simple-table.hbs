@@ -1,0 +1,9 @@
+THIS IS SIMPLE TABLE
+
+{{#data-table data=data selectionMode='multi' selectionChanged=(action 'selectionChanged') as |t|}}
+  {{t.selectionColumn}}
+  {{t.column propertyName='name' name='Name'}}
+  {{t.column propertyName='surname' name='Surname'}}
+  {{t.column propertyName='age' name='Age'}}
+  {{t.column propertyName='city' name='City'}}
+{{/data-table}}

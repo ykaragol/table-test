@@ -1,0 +1,38 @@
+THIS IS CUSTOM TABLE
+
+{{#data-table data=data showFooter=true selectionMode='multi' selectionChanged=(action 'selectionChanged') as |t|}}
+  {{t.selectionColumn}}
+  {{#t.selectionColumn as |col|}}
+    {{#if col.header}}
+        is Selected?
+    {{/if}}
+    {{#if col.body}}
+        <button class="btn btn-primary" data-toggle="button" aria-pressed="false" autocomplete="off"
+          {{action col.change (if col.isSelected false true)}} value={{col.isSelected}}>
+          {{if col.isSelected 'Selected' 'Not Selected'}}
+        </button>
+    {{/if}}
+    {{#if col.footer}}
+      {{if col.isSelected 'All is selected' 'Not all is selected'}}
+    {{/if}}
+  {{/t.selectionColumn}}
+  {{t.column propertyName='name' name='Name'}}
+  {{t.column propertyName='surname' name='Surname'}}
+  {{#t.column as |col|}}
+    {{#if col.header}}
+        <span style='text-decoration: underline overline; color:pink'>Age</span>
+    {{/if}}
+    {{#if col.body}}
+      {{col.row.age}}
+    {{/if}}
+    {{#if col.footer}}
+        <b><i>{{totalAges}}</i></b>
+    {{/if}}
+  {{/t.column}}
+  {{#t.column name='City' header='default' as |col|}}
+    {{col.row.city}}
+  {{/t.column}}
+  {{#t.column name='Order' header='default' as |col|}}
+    {{col.index}}
+  {{/t.column}}
+{{/data-table}}
