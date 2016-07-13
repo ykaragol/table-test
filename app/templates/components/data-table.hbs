@@ -2,7 +2,7 @@
   <thead>
     <tr>
       {{yield (hash
-          column=(component 'dt-column-header')
+          column=(component 'dt-column-header' sortable=sortable sortRequested=(action 'sortRequested') sortedColumns=sortedColumns)
           selectionColumn=(component (if singleSelection 'dt-column-header' 'dt-selection-column-header') isSelected=isAllSelected selected=(action 'selectAll') deselected=(action 'deselectAll'))
       )}}
     </tr>

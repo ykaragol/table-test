@@ -17,6 +17,7 @@ export default Ember.Component.extend({
   init(){
     this._super(...arguments);
     this.set('selectedRows',Ember.makeArray());
+    this.set('sortedColumns',Ember.makeArray());
   },
 
   actions:{
@@ -41,6 +42,24 @@ export default Ember.Component.extend({
     deselectAll:function(){
       this.get('selectedRows').clear();
       this.get('selectionChanged')(this.get('selectedRows'));
+    },
+    sortRequested:function(sortKey){
+      let sortedColumns = this.get('sortedColumns');
+      let sortDefinition = sortedColumns.findBy('sortKey', sortKey);
+      sortedColumns.removeObject(sortDefinition);
+      if(sortDefinition){
+        let sortDirection = sortDefinition.sortDirection;
+        if(sortDirection==='asc'){
+          sortDefinition.sortDirection = 'desc';
+          sortedColumns.pushObject(sortDefinition);
+        }else{
+          sortDefinition = undefined;
+        }
+      }else{
+        sortDefinition = {sortDirection:'asc', sortKey:sortKey};
+        sortedColumns.pushObject(sortDefinition);
+      }
+      (this.get('sortChanged')||Ember.K)(sortedColumns);
     }
   }
 });

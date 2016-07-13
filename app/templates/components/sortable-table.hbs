@@ -1,0 +1,9 @@
+THIS IS SORTABLE TABLE
+
+{{#data-table data=data selectionMode='multi' sortable=true selectionChanged=(action 'selectionChanged') sortChanged=(action 'sortChanged') as |t|}}
+  {{t.selectionColumn}}
+  {{t.column propertyName='name' name='Name'}}
+  {{t.column propertyName='surname' name='Surname'}}
+  {{t.column propertyName='age' name='Age'}}
+  {{t.column propertyName='city' name='City'  sortable=false}}
+{{/data-table}}
