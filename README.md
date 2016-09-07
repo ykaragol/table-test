@@ -1,3 +1,9 @@
+NOTE:
+Do not clone this app, the development of this table is going under [another repository](https://github.com/tubitak-bilgem-yte/ember-contextual-table) as an ember-addon. 
+
+It has an npm package also with [that name](https://www.npmjs.com/package/ember-contextual-table). 
+
+
 # Table-test
 
 This README outlines the details of collaborating on this Ember application.
